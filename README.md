@@ -24,6 +24,8 @@ All returned data is stored as a multi-dimensional array in `$AppFiguresClient->
 Example
 -------
 
+This example will print the array of reviews for a particular product ID. *(Note, you can get the product ID from the `$AppFiguresClient->GetProducts()` call)*:
+
 ```
 include_once 'AppFiguresAPIClient.php';
 $AppFiguresClient = new AppFiguresAPIClient('USERNAME', 'PASSWORD');
