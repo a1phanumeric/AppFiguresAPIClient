@@ -32,6 +32,7 @@ They are as follows:
 
 - **GetUserData()** - This is automatically called on the class constructor, but can be called anytime if you need to refresh anything.
 - **GetProducts()** - Returns an array of your apps on AppFigures.
+- **GetReviewsForProductId((int)productId, (bool, optional)compressed)** - Returns an array of a particular product's reviews. The compressed BOOL is optional, but recommended (so the default is true). Compressing the array removes much of the review response packet, to give you a simple array of reviews.
 
 
 License

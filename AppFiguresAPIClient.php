@@ -55,6 +55,19 @@ class AppFiguresAPIClient{
 		return $this->lastResponse;
 	}
 	
+	private function CompressReviewResponse(){
+		$compressedReviews = array();
+		foreach($this->lastResponse as $countryCode=>$countryReviewData){
+			if(!empty($countryReviewData['reviews'])){
+				foreach($countryReviewData['reviews'] as $review){
+					$compressedReviews[] = $review;
+				}
+			}
+		}
+		
+		return $compressedReviews;
+	}
+	
 	
 	
 	// Public functions
@@ -68,21 +81,30 @@ class AppFiguresAPIClient{
 		
 			if($this->SendRequest($resourcePath)){
 				$this->userData = $this->lastResponse; 
-				return $this->lastResponse;
 			}
+			return $this->lastResponse;
 		}else{
 			return $this->userData;
 		}
 	}
+	
 	
 	public function GetProducts(){
 		if(empty($this->userData)){
 			$this->error = 'The user data is empty. The API possibly failed to connect (but you should have been warned about this?)';
 			return false;
 		}
-		
 		return $this->userData['products'];
+	}
+	
+	
+	public function GetReviewsForProductId($productId, $compressed = true){
+		$resourcePath = "/reviews/{$productId}/major";
 		
+		if($this->SendRequest($resourcePath)){
+			if($compressed) $this->lastResponse = $this->CompressReviewResponse();
+		}
+		return $this->lastResponse;
 	}
 	
 }
