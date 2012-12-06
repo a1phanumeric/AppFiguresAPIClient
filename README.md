@@ -21,6 +21,16 @@ This will automatically perform a connection to the AppFigures API, and retrieve
 
 All returned data is stored as a multi-dimensional array in `$AppFiguresClient->lastResponse`.
 
+Example
+-------
+
+```
+include_once 'AppFiguresAPIClient.php';
+$AppFiguresClient = new AppFiguresAPIClient('USERNAME', 'PASSWORD');
+print_r($AppFiguresClient->GetReviewsForProductId(88512));
+```
+
+
 API Calls
 ---------
 
